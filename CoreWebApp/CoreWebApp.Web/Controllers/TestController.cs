@@ -9,7 +9,7 @@ using CoreWebApp.Web.Models;
 
 namespace CoreWebApp.Web.Controllers
 {
-    public class AppointmentController : Controller
+    public class TestController : Controller
     {
         public IActionResult Index()
         {

@@ -14,6 +14,6 @@ namespace CoreWebApp.Web.Models {
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
 
-        public List<Task> Task { get; set; }
+        public List<ScrumTask> Task { get; set; }
     }
 }

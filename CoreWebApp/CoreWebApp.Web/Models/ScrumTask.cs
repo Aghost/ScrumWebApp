@@ -4,7 +4,7 @@ using System;
 // Data
 namespace CoreWebApp.Web.Models
 {
-    public class Task
+    public class ScrumTask
     {
         public int Id { get; set; }
         public string TaskName { get; set; }
