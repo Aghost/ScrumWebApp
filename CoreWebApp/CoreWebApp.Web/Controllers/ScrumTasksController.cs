@@ -54,7 +54,7 @@ namespace CoreWebApp.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TaskName,TaskData,CreatedOn,UpdatedOn")] ScrumTask scrumTask)
+        public async Task<IActionResult> Create([Bind("Id,TaskName,Status,TaskDescription,CreatedOn,UpdatedOn")] ScrumTask scrumTask)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace CoreWebApp.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,TaskName,TaskData,CreatedOn,UpdatedOn")] ScrumTask scrumTask)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TaskName,Status,TaskDescription,CreatedOn,UpdatedOn")] ScrumTask scrumTask)
         {
             if (id != scrumTask.Id)
             {

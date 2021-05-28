@@ -16,7 +16,10 @@
                 @Html.DisplayNameFor(model => model.TaskName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TaskData)
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskDescription)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedOn)
@@ -34,7 +37,10 @@
                 @Html.DisplayFor(modelItem => item.TaskName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TaskData)
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskDescription)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedOn)
