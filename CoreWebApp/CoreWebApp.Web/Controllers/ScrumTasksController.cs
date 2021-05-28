@@ -34,7 +34,7 @@ namespace CoreWebApp.Web.Controllers
             }
 
             var scrumTask = await _context.ScrumTasks
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ScrumTaskId == id);
             if (scrumTask == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace CoreWebApp.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TaskName,Status,TaskDescription,CreatedOn,UpdatedOn")] ScrumTask scrumTask)
+        public async Task<IActionResult> Create([Bind("ScrumTaskId,TaskName,Status,TaskDescription,CreatedOn,UpdatedOn")] ScrumTask scrumTask)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace CoreWebApp.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,TaskName,Status,TaskDescription,CreatedOn,UpdatedOn")] ScrumTask scrumTask)
+        public async Task<IActionResult> Edit(int id, [Bind("ScrumTaskId,TaskName,Status,TaskDescription,CreatedOn,UpdatedOn")] ScrumTask scrumTask)
         {
-            if (id != scrumTask.Id)
+            if (id != scrumTask.ScrumTaskId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace CoreWebApp.Web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ScrumTaskExists(scrumTask.Id))
+                    if (!ScrumTaskExists(scrumTask.ScrumTaskId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace CoreWebApp.Web.Controllers
             }
 
             var scrumTask = await _context.ScrumTasks
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ScrumTaskId == id);
             if (scrumTask == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace CoreWebApp.Web.Controllers
 
         private bool ScrumTaskExists(int id)
         {
-            return _context.ScrumTasks.Any(e => e.Id == id);
+            return _context.ScrumTasks.Any(e => e.ScrumTaskId == id);
         }
     }
 }

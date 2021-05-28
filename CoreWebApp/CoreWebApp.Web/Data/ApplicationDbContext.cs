@@ -14,7 +14,6 @@ namespace CoreWebApp.Web.Data
 
         }
 
-        public DbSet<Board> Boards { get; set; }
         public DbSet<ScrumTask> ScrumTasks { get; set; }
     }
 }

@@ -7,14 +7,25 @@ namespace CoreWebApp.Web.Models
 {
     public enum Status
     {
+        Doing,
         Todo,
         Done
     }
     public class ScrumTask
     {
-        public int Id { get; set; }
+        public int ScrumTaskId { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        [MaxLength(64)]
         public string TaskName { get; set; }
+
+        [Required]
         public Status Status { get; set; }
+
+        [Required]
+        [DataType(DataType.MultilineText)]
+        [MaxLength(256)]
         public string TaskDescription { get; set; }
 
         [DataType(DataType.Date)]
