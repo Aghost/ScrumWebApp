@@ -1,6 +1,6 @@
 using System;
 
-namespace CoreWebApp.Web.Models
+namespace ScrumBoard.Data.Models
 {
     public class ErrorViewModel
     {

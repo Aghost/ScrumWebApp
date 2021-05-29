@@ -14,4 +14,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ScrumBoard.Data\ScrumBoard.Data.csproj" />
+    <ProjectReference Include="..\ScrumBoard.Services\ScrumBoard.Services.csproj" />
+  </ItemGroup>
+
 </Project>

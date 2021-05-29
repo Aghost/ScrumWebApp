@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 // Id
 // Name
 // Data
-namespace CoreWebApp.Web.Models
+namespace ScrumBoard.Data.Models
 {
     public enum Status
     {

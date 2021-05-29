@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CoreWebApp.Web.Data;
+using ScrumBoard.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,8 +25,9 @@ namespace CoreWebApp.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ScrumBoardDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("CoreWebApp.Web"))
+                );
 
             services.AddControllersWithViews();
         }
@@ -50,6 +51,8 @@ namespace CoreWebApp.Web
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseStatusCodePages();
 
             app.UseEndpoints(endpoints =>
             {

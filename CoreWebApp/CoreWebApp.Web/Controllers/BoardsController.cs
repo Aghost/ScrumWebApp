@@ -10,22 +10,22 @@ using ScrumBoard.Data.Models;
 
 namespace CoreWebApp.Web.Controllers
 {
-    public class ScrumTasksController : Controller
+    public class BoardsController : Controller
     {
         private readonly ScrumBoardDbContext _context;
 
-        public ScrumTasksController(ScrumBoardDbContext context)
+        public BoardsController(ScrumBoardDbContext context)
         {
             _context = context;
         }
 
-        // GET: ScrumTasks
+        // GET: Boards
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ScrumTasks.ToListAsync());
+            return View(await _context.Boards.ToListAsync());
         }
 
-        // GET: ScrumTasks/Details/5
+        // GET: Boards/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace CoreWebApp.Web.Controllers
                 return NotFound();
             }
 
-            var scrumTask = await _context.ScrumTasks
-                .FirstOrDefaultAsync(m => m.ScrumTaskId == id);
-            if (scrumTask == null)
+            var board = await _context.Boards
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (board == null)
             {
                 return NotFound();
             }
 
-            return View(scrumTask);
+            return View(board);
         }
 
-        // GET: ScrumTasks/Create
+        // GET: Boards/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: ScrumTasks/Create
+        // POST: Boards/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ScrumTaskId,TaskName,Status,TaskDescription,CreatedOn,UpdatedOn")] ScrumTask scrumTask)
+        public async Task<IActionResult> Create([Bind("Id,Name,CreatedOn,UpdatedOn")] Board board)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(scrumTask);
+                _context.Add(board);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(scrumTask);
+            return View(board);
         }
 
-        // GET: ScrumTasks/Edit/5
+        // GET: Boards/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace CoreWebApp.Web.Controllers
                 return NotFound();
             }
 
-            var scrumTask = await _context.ScrumTasks.FindAsync(id);
-            if (scrumTask == null)
+            var board = await _context.Boards.FindAsync(id);
+            if (board == null)
             {
                 return NotFound();
             }
-            return View(scrumTask);
+            return View(board);
         }
 
-        // POST: ScrumTasks/Edit/5
+        // POST: Boards/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ScrumTaskId,TaskName,Status,TaskDescription,CreatedOn,UpdatedOn")] ScrumTask scrumTask)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CreatedOn,UpdatedOn")] Board board)
         {
-            if (id != scrumTask.ScrumTaskId)
+            if (id != board.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace CoreWebApp.Web.Controllers
             {
                 try
                 {
-                    _context.Update(scrumTask);
+                    _context.Update(board);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ScrumTaskExists(scrumTask.ScrumTaskId))
+                    if (!BoardExists(board.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace CoreWebApp.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(scrumTask);
+            return View(board);
         }
 
-        // GET: ScrumTasks/Delete/5
+        // GET: Boards/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace CoreWebApp.Web.Controllers
                 return NotFound();
             }
 
-            var scrumTask = await _context.ScrumTasks
-                .FirstOrDefaultAsync(m => m.ScrumTaskId == id);
-            if (scrumTask == null)
+            var board = await _context.Boards
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (board == null)
             {
                 return NotFound();
             }
 
-            return View(scrumTask);
+            return View(board);
         }
 
-        // POST: ScrumTasks/Delete/5
+        // POST: Boards/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var scrumTask = await _context.ScrumTasks.FindAsync(id);
-            _context.ScrumTasks.Remove(scrumTask);
+            var board = await _context.Boards.FindAsync(id);
+            _context.Boards.Remove(board);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ScrumTaskExists(int id)
+        private bool BoardExists(int id)
         {
-            return _context.ScrumTasks.Any(e => e.ScrumTaskId == id);
+            return _context.Boards.Any(e => e.Id == id);
         }
     }
 }
